@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
-apply plugin: 'bintray-release'
+
+repositories {
+    maven { url 'http://dl.bintray.com/cyrillrx/maven' }
+}
 
 android {
     compileSdkVersion project.ANDROID_BUILD_SDK_VERSION as int
@@ -9,7 +12,7 @@ android {
         minSdkVersion project.ANDROID_BUILD_MIN_SDK_VERSION as int
         targetSdkVersion project.ANDROID_BUILD_TARGET_SDK_VERSION as int
         versionCode 1
-        versionName "0.0.2"
+        versionName "1.1"
     }
 
     buildTypes {
@@ -23,17 +26,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile 'com.google.protobuf:protobuf-java:3.0.0-alpha-2'
-}
+    // Local libs
+    compile project(':volley')
 
-publish {
-    userOrg = 'cyrillrx'
-    groupId = 'com.cyrillrx.android'
-    artifactId = 'remote'
-    version = '0.0.2'
-    description = 'Remote control library in java.'
-    website = 'https://github.com/cyrillrx/android_libraries'
+    compile 'com.cyrillrx.android:core:0.2.0'
+
+    // External libs
+    compile 'com.google.code.gson:gson:2.3.1'
 }

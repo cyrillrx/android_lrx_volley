@@ -1,9 +1,6 @@
 // Local modules
 
-include ':Core'
-include ':Remote'
-include ':SocialHelper'
-include ':VolleyHelper'
+include ':volley_toolbox'
 
 // Git submodules
 
